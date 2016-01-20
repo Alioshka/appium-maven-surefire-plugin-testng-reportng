@@ -73,13 +73,13 @@ public class DriverManager {
         }
         switch (os) {
             case "windows":
-                System.setProperty("webdriver.chrome.driver", "bin/drivers/windows/chromedriver.exe");
+                System.setProperty("webdriver.chrome.driver", "drivers/windows/chromedriver.exe");
                 break;
             case "mac":
-                System.setProperty("webdriver.chrome.driver", "bin/drivers/mac/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "drivers/mac/chromedriver");
                 break;
             case "linux":
-                System.setProperty("webdriver.chrome.driver", "bin/drivers/linux32/chromedriver");
+                System.setProperty("webdriver.chrome.driver", "drivers/linux32/chromedriver");
                 break;
             default:
                 System.out.println("Unknown OS: " + os);
