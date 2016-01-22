@@ -1,0 +1,15 @@
+<!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
+<suite name="Desktop Web Tests Suite" parallel="tests" thread-count="2" verbose="10">
+    <test name="Selenium Web Tests">
+        <parameter name="baseUrl" value="http://www.bbc.com/" />
+        <classes>
+            <class name="e2e.WebTests" />
+        </classes>
+    </test>
+    <test name="Selenium Web Tests2">
+        <parameter name="baseUrl" value="http://www.epam.com/" />
+        <classes>
+            <class name="e2e.WebTests2" />
+        </classes>
+    </test>
+</suite>

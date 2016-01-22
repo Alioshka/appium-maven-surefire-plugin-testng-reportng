@@ -80,3 +80,9 @@ so "clean" goal  deleting "target" folder where report created
 from the project root directory go to:
 target/test-output/html/index.html
 
+# Running test in parallel example:
+
+```sh
+$ mvn clean test -Dtestng.xml=resources/testng/web-in-parallel.xml
+```
+

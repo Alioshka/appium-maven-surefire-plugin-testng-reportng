@@ -10,7 +10,7 @@ import org.openqa.selenium.remote.RemoteWebDriver;
 
 public class DriverManager {
 
-    private static DriverManager instance;
+    private static ThreadLocal<DriverManager> instance = new ThreadLocal<>();
 
     private WebDriver webDriver;
 
@@ -20,14 +20,14 @@ public class DriverManager {
         createDriver(ConfigurationManager.DRIVER_TYPE);
     }
 
-    private static DriverManager getInstance() {
-        if (instance == null) {
-            instance = new DriverManager();
+    private static synchronized DriverManager getInstance() {
+        if (instance.get() == null) {
+            instance.set(new DriverManager());
         }
-        return instance;
+        return instance.get();
     }
 
-    private synchronized void createDriver(String driverType) {
+    private void createDriver(String driverType) {
         DesiredCapabilities capabilities;
         switch (driverType) {
             case "Chrome":
@@ -60,7 +60,7 @@ public class DriverManager {
         }
     }
 
-    public void setChromeSystemProperty() {
+    private void setChromeSystemProperty() {
         String os = System.getProperty("os.name").toLowerCase();
         if (os.contains("windows")) {
             os = "windows";

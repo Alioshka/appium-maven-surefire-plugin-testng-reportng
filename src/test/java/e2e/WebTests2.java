@@ -7,7 +7,7 @@ import org.testng.annotations.BeforeClass;
 import org.testng.annotations.Parameters;
 import org.testng.annotations.Test;
 
-public class WebTests {
+public class WebTests2 {
 
     WebDriver driver;
 
@@ -20,21 +20,21 @@ public class WebTests {
     @Test()
     public void test(String baseUrl) {
         driver.get(baseUrl);
-        Assert.assertEquals(driver.getTitle(), "BBC - Homepage");
+        Assert.assertEquals(driver.getTitle(), "EPAM | Software Product Development Services");
     }
 
     @Parameters({ "baseUrl" })
     @Test()
     public void test2(String baseUrl) {
-        driver.get(baseUrl + "sport/");
-        Assert.assertEquals(driver.getTitle(), "BBC Sport - Sport");
+        driver.get(baseUrl + "careers");
+        Assert.assertEquals(driver.getTitle(), "Careers");
     }
 
     @Parameters({ "baseUrl" })
     @Test()
     public void test3(String baseUrl) {
-        driver.get(baseUrl + "weather/");
-        Assert.assertEquals(driver.getTitle(), "BBC Weather");
+        driver.get(baseUrl + "about");
+        Assert.assertEquals(driver.getTitle(), "About");
     }
 
     @AfterClass

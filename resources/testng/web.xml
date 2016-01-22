@@ -1,8 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Desktop Web Tests Suite" verbose="10">
-    <!--<listeners>-->
-        <!--<listener class-name="e2e.TestNGListener"/>-->
-    <!--</listeners>-->
     <parameter name="baseUrl" value="http://www.bbc.com/" />
     <test name="Selenium Web Tests">
         <classes>

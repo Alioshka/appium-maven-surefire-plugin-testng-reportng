@@ -1,8 +1,5 @@
 <!DOCTYPE suite SYSTEM "http://testng.org/testng-1.0.dtd">
 <suite name="Android Tests Suite" verbose="10">
-    <!--<listeners>-->
-        <!--<listener class-name="e2e.TestNGListener"/>-->
-    <!--</listeners>-->
     <test name="Coogle Calculator Test">
         <classes>
             <class name="e2e.AndroidNativeTests"/>
