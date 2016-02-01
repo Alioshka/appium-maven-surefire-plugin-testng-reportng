@@ -12,7 +12,7 @@ public class AndroidNativeTests {
 
     @BeforeClass
     public void setup(){
-        driver = DriverManager.getMobileDriver();
+        driver = DriverManager.getDriver();
     }
 
     @Test(enabled = true)

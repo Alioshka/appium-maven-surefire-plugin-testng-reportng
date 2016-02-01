@@ -17,11 +17,7 @@ public class ScreenshotUtils {
 
     public static String takeScreenshot() {
         File tempFile;
-        if (DriverManager.getMobileDriver() == null) {
-            tempFile = ((TakesScreenshot) DriverManager.getWebDriver()).getScreenshotAs(OutputType.FILE);
-        } else {
-            tempFile = ((TakesScreenshot) DriverManager.getMobileDriver()).getScreenshotAs(OutputType.FILE);
-        }
+        tempFile = ((TakesScreenshot) DriverManager.getDriver()).getScreenshotAs(OutputType.FILE);
         String timeStamp = new SimpleDateFormat("yyyy.MM.dd.HH.mm.ss").format(new Date());
         String file = timeStamp + ".png";
         try {

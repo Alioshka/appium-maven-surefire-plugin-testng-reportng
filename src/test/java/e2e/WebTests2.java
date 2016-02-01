@@ -13,7 +13,7 @@ public class WebTests2 {
 
     @BeforeClass
     public void setup(){
-        driver = DriverManager.getWebDriver();
+        driver = DriverManager.getDriver();
     }
 
     @Parameters({ "baseUrl" })

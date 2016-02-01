@@ -1,20 +1,16 @@
 package e2e;
 
-import io.appium.java_client.MobileDriver;
 import io.appium.java_client.android.AndroidDriver;
-import org.openqa.selenium.WebDriver;
 import org.openqa.selenium.chrome.ChromeDriver;
 import org.openqa.selenium.firefox.FirefoxDriver;
 import org.openqa.selenium.remote.DesiredCapabilities;
 import org.openqa.selenium.remote.RemoteWebDriver;
 
-public class DriverManager {
+public class DriverManager<T> {
 
     private static ThreadLocal<DriverManager> instance = new ThreadLocal<>();
 
-    private WebDriver webDriver;
-
-    private MobileDriver mobileDriver;
+    private T driver;
 
     private DriverManager() {
         createDriver(ConfigurationManager.DRIVER_TYPE);
@@ -27,29 +23,30 @@ public class DriverManager {
         return instance.get();
     }
 
-    private void createDriver(String driverType) {
+    @SuppressWarnings("unchecked")
+    private void createDriver(String driverType){
         DesiredCapabilities capabilities;
         switch (driverType) {
             case "Chrome":
                 setChromeSystemProperty();
-                setWebDriver(new ChromeDriver());
+                setDriver((T) new ChromeDriver());
                 break;
             case "Firefox":
-                setWebDriver(new FirefoxDriver());
+                setDriver((T) new FirefoxDriver());
                 break;
             case "Safari":
                 throw new UnsupportedOperationException(
                         "not implemented yet !!!");
             case "AndroidChrome":
                 capabilities = new CapabilitiesLoader("Android_Chrome_Capabilities.properties").loadCapabilities();
-                setWebDriver(new RemoteWebDriver(ConfigurationManager.APPIUM_URL, capabilities));
+                setDriver((T) new RemoteWebDriver(ConfigurationManager.APPIUM_URL, capabilities));
                 break;
             case "iOSSafari":
                 throw new UnsupportedOperationException(
                         "not implemented yet !!!");
             case "Android":
                 capabilities = new CapabilitiesLoader("Android_Capabilities.properties").loadCapabilities();
-                setMobileDriver(new AndroidDriver(ConfigurationManager.APPIUM_URL, capabilities));
+                setDriver((T) new AndroidDriver(ConfigurationManager.APPIUM_URL, capabilities));
                 break;
             case "iOS":
                 throw new UnsupportedOperationException(
@@ -87,19 +84,12 @@ public class DriverManager {
         }
     }
 
-    public static WebDriver getWebDriver() {
-        return getInstance().webDriver;
+    @SuppressWarnings("unchecked")
+    public static <T> T getDriver() {
+        return (T) getInstance().driver;
     }
 
-    private void setWebDriver(WebDriver driver) {
-        webDriver = driver;
-    }
-
-    public static MobileDriver getMobileDriver() {
-        return getInstance().mobileDriver;
-    }
-
-    private void setMobileDriver(MobileDriver driver) {
-        mobileDriver = driver;
+    private void setDriver(T driver) {
+        this.driver = driver;
     }
 }
